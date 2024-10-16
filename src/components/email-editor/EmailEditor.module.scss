@@ -12,6 +12,15 @@ h1 {
   box-shadow: 0 3px 6px rgba(177, 0, 0, 0.2);
   // border: 1px solid #ccc;
 
+  .preview {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    width: 80%;
+  }
+
   .editor {
     display: block;
 
