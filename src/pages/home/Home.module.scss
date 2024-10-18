@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.5rem;
+  width: 800px;
+
+  margin: 0 auto;
+}
