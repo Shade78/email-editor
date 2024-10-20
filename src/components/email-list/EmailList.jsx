@@ -16,7 +16,7 @@ export default function EmailList() {
         <span>Sended emails:</span>
         <div>
           {data?.map((email) => (
-            <div key={email.text}>{parse(email.text)}</div>
+            <div key={email.id}>{parse(email.text)}</div>
           ))}
         </div>
       </div>

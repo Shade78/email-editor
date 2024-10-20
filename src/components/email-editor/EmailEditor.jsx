@@ -1,20 +1,12 @@
-import { useState, useRef } from "react";
 import parse from "html-react-parser";
 import styles from "./EmailEditor.module.scss";
 import { Bold, Eraser, Italic, Underline } from "lucide-react";
-import { applyStyle } from "./apply-style";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { emailService } from "../../services/email-service";
+import useEditor from "./useEditor";
 
 export default function EmailEditor() {
-  const [text, setText] = useState(
-    "<i>Test text</i> <b>For</b> <u>Formatting</u>"
-  );
-
-  const [selectionStart, setSelectionStart] = useState(0);
-  const [selectionEnd, setSelectionEnd] = useState(0);
-
-  const textRef = useRef(null);
+  const { textRef, applyFormat, updateSelections, text, setText } = useEditor();
 
   const queryClient = useQueryClient();
 
@@ -28,23 +20,6 @@ export default function EmailEditor() {
       });
     },
   });
-
-  const updateSelections = () => {
-    if (!textRef.current) return;
-
-    setSelectionStart(textRef.current.selectionStart);
-    setSelectionEnd(textRef.current.selectionEnd);
-  };
-
-  const applyFormat = (type) => {
-    const selectedText = text.substring(selectionStart, selectionEnd);
-    if (!selectedText) return;
-
-    const before = text.substring(0, selectionStart); // текст слева от выделенного фрагемента
-    const after = text.substring(selectionEnd); // текст справа от выделенного фрагемента
-
-    setText(before + applyStyle(type, selectedText) + after);
-  };
 
   return (
     <>
